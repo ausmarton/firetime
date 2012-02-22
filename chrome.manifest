@@ -1,0 +1,2 @@
+content firetime content/
+overlay chrome://browser/content/browser.xul chrome://firetime/content/firetime.xul

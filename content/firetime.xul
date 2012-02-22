@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay >
+
+<overlay id="firetime"
+          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+ 
+	<statusbar id="status-bar">
+		<statusbarpanel id="status-bar-panel" label="FireTime" tooltiptext="Change time remotely.">
+			<button label="FireTime" type="panel">
+				<panel id="search-panel">
+					<script type="text/javascript">
+						$(function() {
+						    $('#datetime').datepicker({
+						    	duration: '',
+							showTime: true,
+							constrainInput: false,
+							dateFormat: 'dd-mm-yy',
+							time24h: true,
+						     });
+						});
+						$(document).ready(function(){
+							$("#send").click(function(){
+								var bgPage = chrome.extension.getBackgroundPage();
+								var newTime = $('#datetime').val();
+								bgPage.setRemoteTime(newTime);
+							});
+						});
+					</script>
+
+					<style type="text/css">
+						body{ font: 80% "Trebuchet MS", sans-serif; margin: 50px;width:360px;height:280px;}
+					</style>
+
+					<p>
+						<input type="text" name="datetime" id="datetime" value="" />
+					</p>
+					<input type="button" id="send" value="Set" />
+
+				</panel>
+			</button>
+		</statusbarpanel>
+	</statusbar>
+ 
+</overlay>
+
