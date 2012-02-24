@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay >
 
-<overlay id="firetime"
-          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-          xmlns:html="http://www.w3.org/1999/xhtml">
+<xul:overlay id="firetime"
+          xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+          xmlns="http://www.w3.org/1999/xhtml">
+        <xul:script type="application/x-javascript" src="lib/timepicker/js/jquery-1.3.2.min.js"/>
+        <xul:script type="application/x-javascript" src="lib/timepicker/js/jquery-ui-1.7.2.custom.min.js"/>
+        <xul:script type="application/x-javascript" src="lib/timepicker/js/timepicker.js"/>
+
  
-	<statusbar id="status-bar">
-		<statusbarpanel id="status-bar-panel" label="FireTime" tooltiptext="Change time remotely.">
-			<button label="FireTime" type="panel">
-				<panel id="search-panel">
-					<html:script type="text/javascript">
+	<xul:statusbar id="status-bar">
+		<xul:statusbarpanel id="status-bar-panel" label="FireTime" tooltiptext="Change time remotely.">
+			<xul:button label="FireTime" type="panel">
+				<xul:panel id="search-panel">
+					<link type="text/css" href="lib/timepicker/css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+					<script type="text/javascript">
 						$(function() {
 						    $('#datetime').datepicker({
 						    	duration: '',
@@ -21,26 +26,25 @@
 						});
 						$(document).ready(function(){
 							$("#send").click(function(){
-								var bgPage = chrome.extension.getBackgroundPage();
 								var newTime = $('#datetime').val();
-								bgPage.setRemoteTime(newTime);
+								alert("test");
 							});
 						});
-					</html:script>
+					</script>
 
-					<html:style type="text/css">
+					<style type="text/css">
 						body{ font: 80% "Trebuchet MS", sans-serif; margin: 50px;width:360px;height:280px;}
-					</html:style>
+					</style>
 
-					<html:p>
-						<html:input type="text" name="datetime" id="datetime" value="" />
-					</html:p>
-					<html:input type="button" id="send" value="Set" />
+					<p>
+						<input type="text" name="datetime" id="datetime" value=""></input>
+					</p>
+					<input type="button" id="send" value="Set"></input>
 
-				</panel>
-			</button>
-		</statusbarpanel>
-	</statusbar>
+				</xul:panel>
+			</xul:button>
+		</xul:statusbarpanel>
+	</xul:statusbar>
  
-</overlay>
+</xul:overlay>
 
